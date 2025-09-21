@@ -262,3 +262,36 @@ img { max-width:100%; height:auto; display:block; }
 
 /* Mantém seu [hidden] global */
 [hidden]{ display:none !important; }
+
+
+/* ---- FIX: alinhamento e overflow no mobile ---- */
+*, *::before, *::after {
+  box-sizing: border-box;           /* width passa a incluir o padding */
+}
+
+html, body {
+  overflow-x: hidden;               /* evita qualquer 'vazamento' lateral */
+}
+
+/* Garante que os blocos centrais não passem da tela e fiquem centralizados */
+.container,
+.invitation,
+.invitation-content {
+  width: 100%;
+}
+
+.invitation-content {
+  max-width: 1200px;                /* largura máxima no desktop */
+  margin-inline: auto;              /* centraliza de verdade */
+  padding-left: 1.5rem;             /* pode manter os seus valores atuais */
+  padding-right: 1.5rem;
+}
+
+/* Botões sempre centrados e quebrando linha bonitinho */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
