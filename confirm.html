@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confirmação de Presença | Betânia & Lucas</title>
+
+  <!-- seu CSS principal -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Choices.js (busca embutida no select) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+
+  <!-- Estilos mínimos do popup (auto-contido) -->
+  <style>
+    .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:9999}
+    .popup-content{background:#fff;padding:2rem 2.5rem;border-radius:16px;text-align:center;max-width:420px;margin:0 1rem;box-shadow:0 10px 30px rgba(0,0,0,.2);animation:fadeInUp .35s ease}
+    .popup-content h2{margin:0 0 1rem;font-family:'Playfair Display',serif;color:#a17f56}
+    .popup-content p{margin:0;color:#333}
+    @keyframes fadeInUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .visually-hidden{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  </style>
+</head>
+<body class="confirm-page">
+  <!-- overlay para contraste do fundo -->
+  <div class="confirm-overlay" aria-hidden="true"></div>
+
+  <main class="confirm-container">
+    <section class="confirm-card">
+      <h1 class="confirm-title">Confirme sua presença no almoço de casamento</h1>
+
+      <form id="formConfirmacao" novalidate>
+        <h2 class="visually-hidden">Formulário de confirmação</h2>
+
+        <label for="selectConvidado" class="form-label">Selecione seu nome</label>
+        <select id="selectConvidado" class="form-select combo-elegante" required>
+          <option value="">— Selecione —</option>
+        </select>
+
+        <div id="grupoArea" class="grupo-area" hidden>
+          <p class="grupo-hint">Marque quem do seu grupo irá comparecer:</p>
+          <div id="grupoLista" class="grupo-lista"></div>
+        </div>
+
+        <button id="btnEnviar" type="submit" class="btn btn-primary" disabled>Enviar confirmação</button>
+        <p id="statusMsg" class="status-msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Popup de sucesso: aparece SOMENTE após confirmar -->
+<div id="popupSucesso" class="popup-overlay" role="dialog" aria-modal="true" hidden>
+  <div class="popup-content" tabindex="-1">
+    <h2>🎉 Presença confirmada!</h2>
+    <p>Obrigado por confirmar. Estamos ansiosos para celebrar com você 💍</p>
+    <button id="btnOkPopup" class="btn btn-primary" type="button">OK</button>
+  </div>
+</div>
+
+
+  <!-- Choices.js (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <!-- Seu JS -->
+  <script src="js/confirm.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+/* ===== Base responsiva e tipografia fluida ===== */
+:root{
+  /* escala tipográfica e de espaçamento */
+  --space-1: clamp(0.5rem, 1vw, 0.75rem);
+  --space-2: clamp(0.75rem, 1.2vw, 1rem);
+  --space-3: clamp(1rem, 2vw, 1.5rem);
+  --space-4: clamp(1.5rem, 3vw, 2.5rem);
+  --radius: 12px;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.5; /* melhora leitura no mobile */
+}
+
+/* ===== Seção de capa segura (100dvh corrige barra de endereço móvel) ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;               /* browsers modernos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 0 var(--space-2);    /* respiro lateral em telas pequenas */
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--space-2);
+}
+
+/* Tipografia fluida */
+.monogram {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+.names {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 3.2vw, 2.2rem);
+  margin: 0.5rem 0 0;
+}
+
+.scroll-btn {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: 0.6rem 1rem;
+  border: 1px solid #333;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #333;
+  font-size: clamp(0.9rem, 2.4vw, 1rem);
+  transition: 0.3s;
+}
+.scroll-btn:hover { background:#333; color:#fff; }
+
+/* ===== Convite ===== */
+.invitation {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.invitation-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.55);
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem);
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  max-width: 1200px;     /* melhora leitura em telas muito largas */
+  margin: 0 auto;        /* centraliza no desktop */
+}
+
+.invitation .quote {
+  font-size: clamp(0.9rem, 2.6vw, 1.1rem);
+  font-style: italic;
+  line-height: 1.7;
+  margin: var(--space-2) 0;
+}
+
+.invitation .invite-text {
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  margin: 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.event-details p {
+  margin: 0.25rem 0;
+  font-size: clamp(0.95rem, 2.6vw, 1.05rem);
+}
+
+/* Botões: toques confortáveis no mobile */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: clamp(0.6rem, 1.8vw, 0.75rem) clamp(0.9rem, 2.2vw, 1.1rem);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: #333;
+  font-size: clamp(0.95rem, 2.8vw, 1rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: 0.3s;
+  min-height: 44px; /* alvo mínimo recomendado */
+}
+.btn:hover { background:#333; color:#fff; }
+
+/* ===== Breakpoints extras ===== */
+@media (min-width: 768px) {
+  .invitation-content { padding: 3rem 2rem; }
+}
+
+@media (min-width: 1024px) {
+  .invitation-content { padding: 4rem 3rem; }
+}
+
+@media (min-width: 1440px) {
+  .invitation-content { padding: 5rem 4rem; }
+}
+
+/* ========= PÁGINA DE CONFIRMAÇÃO ========= */
+.confirm-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  background: url('../image/fundo1.png') center/cover no-repeat fixed;
+  position: relative;
+  color: #333;
+  font-family: 'Raleway', sans-serif;
+}
+
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  pointer-events: none;
+}
+
+.confirm-container {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.25rem, 4vw, 2rem) clamp(1rem, 4vw, 1.5rem);
+}
+
+.confirm-card {
+  width: 100%;
+  max-width: 760px; /* um pouco mais largo pro desktop */
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(4px);
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.25rem, 3vw, 2rem);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.confirm-title {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin: 0 0 1.25rem 0;
+  font-size: clamp(1.3rem, 3.2vw, 2rem);
+  color: #a17f56;
+}
+
+.form-label { display:block; margin-bottom:0.5rem; font-weight:600; }
+.form-select {
+  width: 100%;
+  padding: clamp(0.7rem, 2.2vw, 0.9rem);
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: clamp(1rem, 2.8vw, 1rem);
+  background: #fff;
+}
+
+.grupo-area { margin-top: 1rem; }
+.grupo-hint { margin: 0 0 0.5rem 0; color:#555; }
+
+/* grid que cresce junto */
+.grupo-lista {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .grupo-lista { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .grupo-lista { grid-template-columns: repeat(3, 1fr); } }
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #e8e6e3;
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+}
+
+.btn-primary {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: clamp(0.8rem, 2.6vw, 0.9rem) clamp(1.1rem, 3vw, 1.4rem);
+  border-radius: 28px;
+  border: 1px solid #b89b72;
+  background: #fff;
+  color: #a17f56;
+  font-size: clamp(1rem, 2.8vw, 1rem);
+  cursor: pointer;
+  transition: 0.25s;
+  min-height: 44px;
+}
+.btn-primary:hover:not([disabled]) { background:#a17f56; color:#fff; }
+.btn-primary[disabled] { opacity:.6; cursor:not-allowed; }
+
+.status-msg { margin-top: 0.75rem; min-height: 1.25rem; font-size: 0.95rem; }
+
+/* ===== Popup: garantir responsividade ===== */
+.popup-content {
+  max-width: min(90vw, 420px);
+  margin: 0 1rem;
+  border-radius: 16px;
+}
+
+/* ===== Acessibilidade e utilidades ===== */
+img { max-width:100%; height:auto; display:block; }
+
+/* Mantém seu [hidden] global */
+[hidden]{ display:none !important; }
