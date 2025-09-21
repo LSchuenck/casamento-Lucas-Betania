@@ -264,30 +264,44 @@ img { max-width:100%; height:auto; display:block; }
 [hidden]{ display:none !important; }
 
 
-/* ---- FIX: alinhamento e overflow no mobile ---- */
-*, *::before, *::after {
-  box-sizing: border-box;           /* width passa a incluir o padding */
-}
+
+
+
+
+/* === FIX consolidado: centralização e zero overflow no mobile === */
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body {
-  overflow-x: hidden;               /* evita qualquer 'vazamento' lateral */
-}
-
-/* Garante que os blocos centrais não passem da tela e fiquem centralizados */
-.container,
-.invitation,
-.invitation-content {
   width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: hidden;             /* impede “arrastar” lateral */
 }
 
+/* Estruturas centrais */
+.hero, .invitation { display: grid; }
+
+.hero-content,
 .invitation-content {
-  max-width: 1200px;                /* largura máxima no desktop */
-  margin-inline: auto;              /* centraliza de verdade */
-  padding-left: 1.5rem;             /* pode manter os seus valores atuais */
-  padding-right: 1.5rem;
+  margin-inline: auto;            /* centraliza o bloco */
 }
 
-/* Botões sempre centrados e quebrando linha bonitinho */
+/* Largura do conteúdo no mobile e desktop */
+.invitation-content {
+  width: min(100%, 640px);        /* estreito e central no celular */
+  padding-inline: 1.25rem;        /* respiro sem vazar */
+}
+
+/* No desktop pode ocupar mais, mas sem ultrapassar */
+@media (min-width: 1024px) {
+  .invitation-content {
+    width: 100%;
+    max-width: 1200px;            /* limite confortável em 1920x1080 */
+    padding-inline: 1.5rem;
+  }
+}
+
+/* Botões sempre centralizados e quebrando linha bonitinho */
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -295,3 +309,10 @@ html, body {
   gap: 0.5rem;
 }
 
+/* Safe area (aparelhos com notch) */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(env(safe-area-inset-left), 0px);
+    padding-right: max(env(safe-area-inset-right), 0px);
+  }
+}
